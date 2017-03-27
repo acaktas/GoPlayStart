@@ -9,12 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var app_service_1 = require("../app.service");
 var RegisterComponent = (function () {
-    function RegisterComponent() {
+    function RegisterComponent(appService) {
+        this.appService = appService;
+        this.model = {
+            id: 0,
+            username: '',
+            password: '',
+            userEvents: []
+        };
     }
     RegisterComponent.prototype.ngOnInit = function () { };
     RegisterComponent.prototype.save = function () {
-        debugger;
+        this.appService.createUser(this.model);
     };
     return RegisterComponent;
 }());
@@ -24,7 +32,7 @@ RegisterComponent = __decorate([
         selector: 'register',
         templateUrl: 'register.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [app_service_1.AppService])
 ], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 //# sourceMappingURL=register.component.js.map
