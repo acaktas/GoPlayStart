@@ -14,10 +14,8 @@ export class RegisterComponent implements OnInit {
     model: User;
     constructor(private appService: AppService) {
         this.model = {
-            id: 0,
             username: '',
-            password: '',
-            userEvents: []
+            password: ''
         }
     }
 

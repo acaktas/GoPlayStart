@@ -14,10 +14,8 @@ var RegisterComponent = (function () {
     function RegisterComponent(appService) {
         this.appService = appService;
         this.model = {
-            id: 0,
             username: '',
-            password: '',
-            userEvents: []
+            password: ''
         };
     }
     RegisterComponent.prototype.ngOnInit = function () { };
