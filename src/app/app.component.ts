@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component'
 
 @Component({
   selector: 'my-app',
-  template: `<register></register>`,
+  template: `<router-outlet></router-outlet>`,
 })
-export class AppComponent  { name = 'Angular'; }
+export class AppComponent  {}

@@ -24,6 +24,19 @@ var AppService = (function () {
             .catch(this.handleError);
     };
     ;
+    AppService.prototype.login = function (name, password) {
+        var _this = this;
+        var params = new URLSearchParams();
+        params.set('username', name);
+        params.set('password', password);
+        return this.http.get(this.baseUrl + 'users', { params: params, headers: this.headers })
+            .toPromise()
+            .then(function (res) { return _this.onLoginResponse(res.json().data); })
+            .catch(this.handleError);
+    };
+    AppService.prototype.onLoginResponse = function (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+    };
     AppService.prototype.handleError = function (error) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);

@@ -19,6 +19,20 @@ export class AppService {
             .catch(this.handleError);
     };
 
+    login(name: string, password: string) {
+        let params: URLSearchParams = new URLSearchParams();
+        params.set('username', name);
+        params.set('password', password);
+        return this.http.get(this.baseUrl + 'users', { params: params, headers: this.headers })
+            .toPromise()
+            .then(res => this.onLoginResponse(res.json().data as User))
+            .catch(this.handleError);
+    }
+
+    onLoginResponse(user: User) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+    }
+
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);

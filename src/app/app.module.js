@@ -9,6 +9,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
+var app_routing_1 = require("./app.routing");
 var app_directive_1 = require("./app.directive");
 var app_component_1 = require("./app.component");
 var register_component_1 = require("./register/register.component");
@@ -20,8 +21,8 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule],
-        declarations: [app_component_1.AppComponent, app_directive_1.EqualValidator, register_component_1.RegisterComponent],
+        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_1.AppRoutingModule],
+        declarations: [app_component_1.AppComponent, app_directive_1.EqualValidator, register_component_1.RegisterComponent, app_routing_1.routedComponents],
         bootstrap: [app_component_1.AppComponent],
         providers: [app_service_1.AppService]
     })
