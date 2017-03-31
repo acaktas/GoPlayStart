@@ -14,17 +14,21 @@ import { AppService } from '../app.service';
 export class RegisterComponent implements OnInit {
     model: User;
     constructor(private appService: AppService, private router: Router) {
+    }
+
+    ngOnInit() { 
         this.model = {
             username: '',
             password: ''
         }
     }
 
-    ngOnInit() { }
-
     save() {
-        this.appService.createUser(this.model).then(() => {            
-             this.router.navigate(['/']);
-        });
+        this.appService.createUser(this.model).subscribe(() => {
+            this.router.navigate(['/']);
+        },
+            error => {
+                alert(error._body);
+            });
     }
 }

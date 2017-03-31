@@ -11,34 +11,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_service_1 = require("../app.service");
-var RegisterComponent = (function () {
-    function RegisterComponent(appService, router) {
+var DashboardComponent = (function () {
+    function DashboardComponent(appService, router) {
         this.appService = appService;
         this.router = router;
     }
-    RegisterComponent.prototype.ngOnInit = function () {
-        this.model = {
-            username: '',
-            password: ''
-        };
+    DashboardComponent.prototype.ngOnInit = function () {
+        this.currentUser = localStorage.getItem('username');
     };
-    RegisterComponent.prototype.save = function () {
-        var _this = this;
-        this.appService.createUser(this.model).subscribe(function () {
-            _this.router.navigate(['/']);
-        }, function (error) {
-            alert(error._body);
-        });
+    DashboardComponent.prototype.logout = function () {
+        this.appService.onLogout();
+        this.router.navigate(['/']);
     };
-    return RegisterComponent;
+    return DashboardComponent;
 }());
-RegisterComponent = __decorate([
+DashboardComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'register',
-        templateUrl: 'register.component.html'
+        templateUrl: 'dashboard.component.html'
     }),
     __metadata("design:paramtypes", [app_service_1.AppService, router_1.Router])
-], RegisterComponent);
-exports.RegisterComponent = RegisterComponent;
-//# sourceMappingURL=register.component.js.map
+], DashboardComponent);
+exports.DashboardComponent = DashboardComponent;
+//# sourceMappingURL=dashboard.Component.js.map

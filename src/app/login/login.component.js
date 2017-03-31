@@ -20,9 +20,9 @@ var LoginComponent = (function () {
     LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.login = function () {
         var _this = this;
-        this.appService.login(this.model.username, this.model.password).then(function (data) {
+        this.appService.login(this.model.username, this.model.password).subscribe(function (data) {
             _this.router.navigate(['/dashboard/events/all']);
-        }).catch(function (error) {
+        }, function (error) {
             alert(error._body);
         });
     };

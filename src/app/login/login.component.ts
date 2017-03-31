@@ -17,13 +17,13 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() { }
 
-    login(){
-        this.appService.login(this.model.username, this.model.password).then(
+    login() {
+        this.appService.login(this.model.username, this.model.password).subscribe(
             data => {
                 this.router.navigate(['/dashboard/events/all']);
-        }
-        ).catch(error=>{
-            alert(error._body);
-        });        
+            },
+            error => {
+                alert(error._body);
+            });
     }
 }

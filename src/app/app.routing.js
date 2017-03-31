@@ -9,6 +9,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var login_component_1 = require("./login/login.component");
 var register_component_1 = require("./register/register.component");
+var dashboard_Component_1 = require("./dashboard/dashboard.Component");
 var routes = [
     { path: '', component: login_component_1.LoginComponent, pathMatch: 'full' },
     { path: 'register', component: register_component_1.RegisterComponent }
@@ -25,5 +26,5 @@ AppRoutingModule = __decorate([
     })
 ], AppRoutingModule);
 exports.AppRoutingModule = AppRoutingModule;
-exports.routedComponents = [login_component_1.LoginComponent, register_component_1.RegisterComponent];
+exports.routedComponents = [login_component_1.LoginComponent, register_component_1.RegisterComponent, dashboard_Component_1.DashboardComponent];
 //# sourceMappingURL=app.routing.js.map

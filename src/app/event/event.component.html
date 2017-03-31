@@ -1,0 +1,45 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+        <h3 *ngIf="model.id == 0" class="page-header text-center py-3">Add new event</h3>
+        <h3 *ngIf="model.id != 0" class="page-header text-center py-3">Edit event</h3>
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-labe">Event name</label>
+            <div class="col-sm-9">
+                <input type="text" id="name" name="name" class="form-control" placeholder="Event name" [(ngModel)]="model.name" required
+                    autofocus>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="startDate" class="col-sm-3 col-form-labe">Start date</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" id="dp" form-control-name="dp" name="dp" ngbDatepicker #d="ngbDatepicker"
+                        [(ngModel)]="model.startDate">
+                        <div class="input-group-addon" (click)="d.toggle()">
+                            <i class="fa fa-calendar" aria-hidden="true" style="cursor: pointer"></i>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="requiredUsers" class="col-sm-3 col-form-labe">Number of requiered users</label>
+            <div class="col-sm-9">
+                <input type="number" id="requiredUsers" name="requiredUsers" class="form-control" placeholder="Number of requiered users"
+                    [(ngModel)]="model.requiredUsers" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="modifiedBy" class="col-sm-3 col-form-labe">Created by</label>
+            <div class="col-sm-9">
+                <input type="text" id="modifiedBy" name="modifiedBy" class="form-control" readonly placeholder="Modified by"
+                    [(ngModel)]="model.modifiedBy" required>
+            </div>
+        </div>
+        <div class="form-group row" style="margin-top:30px">
+            <div class="offset-sm-3 col-sm-9 row">
+                    <a routerLink="/dashboard" class="btn btn-lg btn-secondary" role="button">Cancel</a>
+                    <button class="btn btn-lg btn-primary ml-auto" type="submit" [disabled]="!eventForm.form.valid">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

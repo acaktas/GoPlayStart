@@ -1,0 +1,35 @@
+<!-- Fixed navbar -->
+<div class="container">
+    <nav class="navbar navbar-light bg-faded rounded navbar-toggleable-md">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        <a class="navbar-brand" routerLink="/dashboard">GoPlay</a>
+        <div class="collapse navbar-collapse" id="containerNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['events', 'all']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['event', '0']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Add new event</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['events', 'my']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">My events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['events', 'going']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Subscribed events</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li><span class="nav-link" style="cursor: pointer" (click)="logout()" >User: {{ currentUser }} - Log out</span></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="card">
+        <div class="panel-body">
+            <router-outlet></router-outlet>            
+        </div>
+    </div>
+</div>
