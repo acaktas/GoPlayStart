@@ -14,33 +14,40 @@ require("rxjs/add/operator/toPromise");
 var AppService = (function () {
     function AppService(http) {
         this.http = http;
+        //private baseUrl: string = 'http://localhost:3838/api/';
         this.baseUrl = 'http://itsaspmvccoreworkshop.azurewebsites.net/api/';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     AppService.prototype.createUser = function (newUser) {
         return this.http.post(this.baseUrl + 'users', JSON.stringify(newUser), { headers: this.headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
+            .then()
             .catch(this.handleError);
     };
     ;
-    AppService.prototype.login = function (name, password) {
+    AppService.prototype.login = function (username, password) {
         var _this = this;
-        var params = new URLSearchParams();
-        params.set('username', name);
-        params.set('password', password);
-        return this.http.get(this.baseUrl + 'users', { params: params, headers: this.headers })
+        var urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('username', username);
+        urlSearchParams.append('password', password);
+        var body = urlSearchParams.toString();
+        var headers = new http_1.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        return this.http.post(this.baseUrl + 'token', body, { headers: headers })
             .toPromise()
-            .then(function (res) { return _this.onLoginResponse(res.json().data); })
+            .then(function (res) { return _this.onLoginResponse(res.json(), username); })
             .catch(this.handleError);
     };
-    AppService.prototype.onLoginResponse = function (user) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
+    ;
+    AppService.prototype.onLoginResponse = function (token, username) {
+        localStorage.setItem('token', JSON.stringify(token));
+        localStorage.setItem('username', username);
     };
+    ;
     AppService.prototype.handleError = function (error) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     };
+    ;
     return AppService;
 }());
 AppService = __decorate([

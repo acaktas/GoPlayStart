@@ -22,6 +22,8 @@ var LoginComponent = (function () {
         var _this = this;
         this.appService.login(this.model.username, this.model.password).then(function (data) {
             _this.router.navigate(['/dashboard/events/all']);
+        }).catch(function (error) {
+            alert(error._body);
         });
     };
     return LoginComponent;

@@ -9,10 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var app_service_1 = require("../app.service");
 var RegisterComponent = (function () {
-    function RegisterComponent(appService) {
+    function RegisterComponent(appService, router) {
         this.appService = appService;
+        this.router = router;
         this.model = {
             username: '',
             password: ''
@@ -20,7 +22,10 @@ var RegisterComponent = (function () {
     }
     RegisterComponent.prototype.ngOnInit = function () { };
     RegisterComponent.prototype.save = function () {
-        this.appService.createUser(this.model);
+        var _this = this;
+        this.appService.createUser(this.model).then(function () {
+            _this.router.navigate(['/']);
+        });
     };
     return RegisterComponent;
 }());
@@ -30,7 +35,7 @@ RegisterComponent = __decorate([
         selector: 'register',
         templateUrl: 'register.component.html'
     }),
-    __metadata("design:paramtypes", [app_service_1.AppService])
+    __metadata("design:paramtypes", [app_service_1.AppService, router_1.Router])
 ], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 //# sourceMappingURL=register.component.js.map

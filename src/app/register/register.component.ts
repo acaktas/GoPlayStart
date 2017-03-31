@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '../model/user';
 
@@ -12,7 +13,7 @@ import { AppService } from '../app.service';
 
 export class RegisterComponent implements OnInit {
     model: User;
-    constructor(private appService: AppService) {
+    constructor(private appService: AppService, private router: Router) {
         this.model = {
             username: '',
             password: ''
@@ -22,6 +23,8 @@ export class RegisterComponent implements OnInit {
     ngOnInit() { }
 
     save() {
-        this.appService.createUser(this.model);
+        this.appService.createUser(this.model).then(() => {            
+             this.router.navigate(['/']);
+        });
     }
 }

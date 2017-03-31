@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
             data => {
                 this.router.navigate(['/dashboard/events/all']);
         }
-        );        
+        ).catch(error=>{
+            alert(error._body);
+        });        
     }
 }
