@@ -9,9 +9,12 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
+var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var app_directive_1 = require("./app.directive");
 var app_component_1 = require("./app.component");
-var register_component_1 = require("./register/register.component");
+var app_routing_1 = require("./app.routing");
+var dashboard_routing_1 = require("./dashboard/dashboard.routing");
+var auth_guard_1 = require("./auth.guard");
 var app_service_1 = require("./app.service");
 var AppModule = (function () {
     function AppModule() {
@@ -20,10 +23,10 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule],
-        declarations: [app_component_1.AppComponent, app_directive_1.EqualValidator, register_component_1.RegisterComponent],
+        imports: [platform_browser_1.BrowserModule, ng_bootstrap_1.NgbModule.forRoot(), forms_1.FormsModule, http_1.HttpModule, app_routing_1.AppRoutingModule, dashboard_routing_1.DashboardRoutingModule],
+        declarations: [app_component_1.AppComponent, app_directive_1.EqualValidator, app_routing_1.routedComponents, dashboard_routing_1.routedDashboardComponents],
         bootstrap: [app_component_1.AppComponent],
-        providers: [app_service_1.AppService]
+        providers: [auth_guard_1.AuthGuard, app_service_1.AppService]
     })
 ], AppModule);
 exports.AppModule = AppModule;

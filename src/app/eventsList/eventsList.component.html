@@ -1,0 +1,31 @@
+<table class="table table-striped table-sm table-hover">
+    <thead class="thead-default">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Users requiered</th>
+            <th>Start date</th>
+            <th>Modified by</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let event of model">
+            <td>{{ event.id }}</td>
+            <td>{{ event.name }}</td>
+            <td>{{ event.requiredUsers }}</td>
+            <td>{{ event.startDate | date }}</td>
+            <td>{{ event.modifiedBy }}</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <button *ngIf="currentUser == event.modifiedBy" type="button" class="btn btn-secondary" (click)="edit(event.id)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                    <button *ngIf="currentUser == event.modifiedBy" type="button" class="btn btn-secondary" (click)="delete(event.id)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                    <button *ngIf="!event.isUserSubscribed" type="button" class="btn btn-secondary" (click)="subscribe(event.id)"><i class="fa fa-plus" aria-hidden="true"></i> Subscribe</button>
+                    <button *ngIf="event.isUserSubscribed" type="button" class="btn btn-secondary" (click)="unsubscribe(event.id)"><i class="fa fa-ban" aria-hidden="true"></i> Unsubscribe</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template ngbModalContainer></ng-template>

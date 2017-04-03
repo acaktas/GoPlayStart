@@ -11,34 +11,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_service_1 = require("../app.service");
-var RegisterComponent = (function () {
-    function RegisterComponent(appService, router) {
+var LoginComponent = (function () {
+    function LoginComponent(appService, router) {
         this.appService = appService;
         this.router = router;
+        this.model = {};
     }
-    RegisterComponent.prototype.ngOnInit = function () {
-        this.model = {
-            username: '',
-            password: ''
-        };
-    };
-    RegisterComponent.prototype.save = function () {
+    LoginComponent.prototype.ngOnInit = function () { };
+    LoginComponent.prototype.login = function () {
         var _this = this;
-        this.appService.createUser(this.model).subscribe(function () {
-            _this.router.navigate(['/']);
+        this.appService.login(this.model.username, this.model.password).subscribe(function (data) {
+            _this.router.navigate(['/dashboard/events/all']);
         }, function (error) {
             alert(error._body);
         });
     };
-    return RegisterComponent;
+    return LoginComponent;
 }());
-RegisterComponent = __decorate([
+LoginComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'register',
-        templateUrl: 'register.component.html'
+        selector: 'login',
+        templateUrl: 'login.component.html'
     }),
-    __metadata("design:paramtypes", [app_service_1.AppService, router_1.Router])
-], RegisterComponent);
-exports.RegisterComponent = RegisterComponent;
-//# sourceMappingURL=register.component.js.map
+    __metadata("design:paramtypes", [app_service_1.AppService,
+        router_1.Router])
+], LoginComponent);
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=login.component.js.map
